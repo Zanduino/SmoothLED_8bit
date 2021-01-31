@@ -5,10 +5,10 @@ _Arduino_ library to control any number of LEDs on any available pins using 8-bi
 
 ## Library description
 Main Features:
-- Any pin can be configured to do 8-bit PWM
-- compact code, each LED defined reserves only 20 Bytes of RAM
-- If a pin capable of hardware PWM then that is used; reducing CPU load generated for software PWM. This can be overridden
-- By default the CIE1931 lightness levels are used so that the PWM values look linear to the eye. This can be turned off per pin
+- Any Arduino pin can be configured to do 8-bit PWM
+- Compact library and each defined LED reserves 20 Bytes of RAM
+- If a pin is capable of hardware PWM then that is used; reducing CPU overhead generated for software PWM. This can be overridden per pin
+- By default the CIE1931 lightness levels are used so that the PWM values look linear to the eye. This can be turned off per pin, or disabled in the library to save space
 - Brightening and fading a pin is done by the library in the background. For example, a call of "set(0);set(255,5000);" will turn an LED off and then brighten to FULL "ON" over 5 seconds. But it returns immediately and lets the program continue processing without having to wait 5 second.
 - Inverted LEDs (for example, a 3-color LED with a common cathode) are supported
 - Multiple LED commands are allowed. For example, a call of "set(0);set(255,1000,1000);set(0,1000);" will make the LED go off, then brighten to FULL over the course of 1 second and pause a second before finally fading back to OFF over the course of 1 second. And all of this happens in the background while the main program continues executing.
@@ -17,7 +17,7 @@ The library allows any number of pins, as many as the corresponding Atmel ATMega
 
 The details of how to setup the library along with all of the publicly available methods can be found on the [INA wiki pages](https://github.com/Zanduino/SmoothLED_8bit/wiki).
 
-Fading a LED so that it looks both smooth and linear requires a bit of work, including applying [CIE 1931 Compensation](https://github.com/Zanduino/SmoothLED_8bit/wiki/CIE1931-Compensation). This makes a fade look linear end-to-end, but comes at a cost of reserving 512 Bytes of program memory. The link describes how to free up that memory if linear fading is not required.
+Fading a LED so that it looks both smooth and linear requires a bit of work, including applying [CIE 1931 Compensation](https://github.com/Zanduino/SmoothLED_8bit/wiki/CIE1931-Compensation). This makes a fade look linear end-to-end, but comes at a cost of reserving 255 Bytes of program memory. The link describes how to free up that memory if linear fading is not required.
 
 Robert Heinlein coined the expression [TANSTAAFL](https://en.wikipedia.org/wiki/There_ain%27t_no_such_thing_as_a_free_lunch) and it certainly applies here - "_There ain't no such thing as a free lunch_". While certain pins support hardware PWM, they are bound to specific TIMER{n} registers. All of the other pins are relegated to being mere digital pins with only "on" or "off" settings.  This library uses the ATMega's TIMER0 and TIMER1 and creates an additional interrupt in the background on both which then takes care of setting the pin to "on" and "off" in the background (quickly enough so that it is effectively a PWM signal) and also for brightening and fading effects. But doing this via interrupts means that CPU cycles are being used and these affect how many CPU cycles are left for the currently active sketch. The more LEDs defined in the library and the higher the defined interrupt rate the less cycles are left over for the sketch.
 
