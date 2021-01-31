@@ -59,7 +59,7 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 #else
 #include <WProgram.h>
 #endif
-#define CIE_MODE_ACTIVE //!< Set the CIE 1931 mode to be active
+#define CIE_MODE_ACTIVE  //!< Set the CIE 1931 mode to be active
 #ifdef CIE_MODE_ACTIVE
 /*! @brief   Linear PWM brightness progression table using CIE brightness levels
     @details CIE 1931 color space and PWM. Fading a LED with PWM from 255 to 0 linearly will not
