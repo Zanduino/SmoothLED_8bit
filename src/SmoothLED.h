@@ -55,9 +55,9 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 #ifndef _smoothLED_h
 #define _smoothLED_h
 #if defined(ARDUINO) && ARDUINO >= 100
-  #include <Arduino.h>
+#include <Arduino.h>
 #else
-  #include <WProgram.h>
+#include <WProgram.h>
 #endif
 #define CIE_MODE_ACTIVE
 #ifdef CIE_MODE_ACTIVE
@@ -95,13 +95,13 @@ const PROGMEM uint8_t kcie[] = {
 ** Not all of these macros are defined on all platforms, so redefine them here just in case       **
 ***************************************************************************************************/
 #ifndef _BV
-  #define _BV(bit) (1 << (bit))  //!< bit shift macro
+#define _BV(bit) (1 << (bit))  //!< bit shift macro
 #endif
 #ifndef cbi
-  #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))  //!< clear bit macro
+#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))  //!< clear bit macro
 #endif
 #ifndef sbi
-  #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))  //!<  set bit macro
+#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))  //!<  set bit macro
 #endif
 /***************************************************************************************************
 ** Define all constants that are to be globally visible                                           **

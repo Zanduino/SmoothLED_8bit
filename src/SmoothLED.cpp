@@ -246,7 +246,7 @@ bool smoothLED::begin(const uint8_t pin, const uint8_t flags) {
 #if defined(TIMSK0)
     fadeTimerOff;
 #else
-  #error Register TIMSK0 is not defined
+#error Register TIMSK0 is not defined
 #endif
     /***********************************************************************************************
     ** TIMER1 is generally a 16-bit timer and we use this for high-speed interrupts for the soft- **
@@ -269,7 +269,7 @@ bool smoothLED::begin(const uint8_t pin, const uint8_t flags) {
     sbi(TCCR1B, WGM12);
     cbi(TCCR1B, WGM13);
 #else
-  #error No TIMSK1 defined for 16-bit register TIMER1
+#error No TIMSK1 defined for 16-bit register TIMER1
 #endif
   }                                       // if-then first begin() call
   _timerPWMPin = digitalPinToTimer(pin);  // Get timer register for pin
@@ -351,29 +351,29 @@ bool smoothLED::begin(const uint8_t pin, const uint8_t flags) {
 #endif
 #if defined(TCCR4A)
         case TIMER4A:  // connect pwm to pin on timer 4, channel A
-  #if defined(OCR4AH)
+#if defined(OCR4AH)
           _PWMRegister = &OCR4AL;
-  #else
+#else
           _PWMRegister = &OCR4A;
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR4A) && defined(COM4B1)
         case TIMER4B:  // connect pwm to pin on timer 4, channel B
-  #if defined(OCR4BH)
+#if defined(OCR4BH)
           _PWMRegister = &OCR4BL;
-  #else
+#else
           _PWMRegister = &OCR4B;
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR4A) && defined(COM4C1)
         case TIMER4C:  // connect pwm to pin on timer 4, channel C
-  #if defined(OCR4CH)
+#if defined(OCR4CH)
           _PWMRegister = &OCR4CL;
-  #else
+#else
           _PWMRegister = &OCR4C;
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR4C) && defined(COM4D1)
@@ -487,9 +487,9 @@ void smoothLED::switchHardwarePWM(const bool state) {
 #if defined(TCCR4A)
         case TIMER4A:  // connect pwm to pin on timer 4, channel A
           sbi(TCCR4A, COM4A1);
-  #if defined(COM4A0)  // only used on 32U4
+#if defined(COM4A0)  // only used on 32U4
           cbi(TCCR4A, COM4A0);
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR4A) && defined(COM4B1)
@@ -505,9 +505,9 @@ void smoothLED::switchHardwarePWM(const bool state) {
 #if defined(TCCR4C) && defined(COM4D1)
         case TIMER4D:  // connect pwm to pin on timer 4, channel D
           sbi(TCCR4C, COM4D1);
-  #if defined(COM4D0)  // only used on 32U4
+#if defined(COM4D0)  // only used on 32U4
           cbi(TCCR4C, COM4D0);
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR5A) && defined(COM5A1)
@@ -591,9 +591,9 @@ void smoothLED::switchHardwarePWM(const bool state) {
 #if defined(TCCR4A)
         case TIMER4A:  // connect pwm to pin on timer 4, channel A
           cbi(TCCR4A, COM4A1);
-  #if defined(COM4A0)  // only used on 32U4
+#if defined(COM4A0)  // only used on 32U4
           cbi(TCCR4A, COM4A0);
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR4A) && defined(COM4B1)
@@ -609,9 +609,9 @@ void smoothLED::switchHardwarePWM(const bool state) {
 #if defined(TCCR4C) && defined(COM4D1)
         case TIMER4D:  // connect pwm to pin on timer 4, channel D
           cbi(TCCR4C, COM4D1);
-  #if defined(COM4D0)  // only used on 32U4
+#if defined(COM4D0)  // only used on 32U4
           cbi(TCCR4C, COM4D0);
-  #endif
+#endif
           break;
 #endif
 #if defined(TCCR5A) && defined(COM5A1)
