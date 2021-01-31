@@ -31,7 +31,7 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
 #include "SmoothLED.h"  // Include the library
 #ifndef __AVR__
-  #error This library and program is designed for Atmel ATMega processors
+#error This library and program is designed for Atmel ATMega processors
 #endif
 
 smoothLED Board;  //!< instance of smoothLED pointing to the builtin LED
