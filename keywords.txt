@@ -11,7 +11,6 @@ smoothLED KEYWORD1
 # Methods and Functions (KEYWORD2) #
 ####################################
 begin	KEYWORD2
-hertz	KEYWORD2
 set	KEYWORD2
 setNow	KEYWORD2
 
